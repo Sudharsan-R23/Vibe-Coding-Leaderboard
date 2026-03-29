@@ -1,0 +1,225 @@
+:root {
+  --bg-deep: #060708;
+  --bg-card: rgba(18, 24, 32, 0.55);
+  --border: rgba(57, 255, 182, 0.18);
+  --neon: #39ffb6;
+  --neon-dim: rgba(57, 255, 182, 0.35);
+  --accent-2: #7c5cff;
+  --accent-hot: #ff3dac;
+  --text: #e8f7f2;
+  --muted: #8da89a;
+  --danger: #ff5c7a;
+  --radius: 14px;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 10% -20%, rgba(57, 255, 182, 0.12), transparent),
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(124, 92, 255, 0.14), transparent),
+    linear-gradient(180deg, #070a0c 0%, #060708 40%, #050608 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--neon);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+code,
+.mono {
+  font-family: var(--font-mono);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(57, 255, 182, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
+}
+
+.btn:hover {
+  border-color: var(--neon-dim);
+  box-shadow: 0 0 18px rgba(57, 255, 182, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(124, 92, 255, 0.12);
+  border-color: rgba(124, 92, 255, 0.35);
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 0 22px rgba(124, 92, 255, 0.28);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-danger {
+  background: rgba(255, 92, 122, 0.15);
+  border-color: rgba(255, 92, 122, 0.45);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 0 18px rgba(255, 92, 122, 0.25);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  border-color: var(--neon-dim);
+  box-shadow: 0 0 0 3px rgba(57, 255, 182, 0.12);
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 4rem;
+}
+
+.grid-2 {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--muted);
+}
+
+.diff-easy {
+  border-color: rgba(57, 255, 182, 0.45);
+  color: var(--neon);
+}
+
+.diff-medium {
+  border-color: rgba(255, 200, 87, 0.5);
+  color: #ffc857;
+}
+
+.diff-hard {
+  border-color: rgba(255, 92, 122, 0.55);
+  color: var(--danger);
+}
+
+.toast-stack {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 360px;
+}
+
+.toast {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(10, 14, 18, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  animation: toast-in 0.35s ease;
+}
+
+.toast-badge {
+  border-color: rgba(255, 200, 87, 0.5);
+  box-shadow:
+    0 0 24px rgba(255, 200, 87, 0.15),
+    0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
